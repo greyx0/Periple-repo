@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://2ne0pyvv61ny"]
+
+[ext_resource type="Texture2D" uid="uid://brvlgnmx7edvq" path="res://Bullets/standard/Bullet 24x24 Part 5C Free.png" id="1_03hoc"]
+
+[sub_resource type="GDScript" id="GDScript_03hoc"]
+script/source = "extends Area2D
+
+@export var velocity = Vector2()
+
+func _ready():
+	pass
+
+func _process(delta):
+	translate(velocity * delta)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03hoc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym8mi"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(384, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3lyl"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(408, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic2fh"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(432, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi517"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(456, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdnhu"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(480, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08twb"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(504, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_camt3"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(528, 264, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgit4"]
+atlas = ExtResource("1_03hoc")
+region = Rect2(552, 264, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrcxt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym8mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3lyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic2fh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi517")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdnhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08twb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_camt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgit4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="standard_bullet" type="Area2D"]
+script = SubResource("GDScript_03hoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_03hoc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xrcxt")
+frame_progress = 0.371002
