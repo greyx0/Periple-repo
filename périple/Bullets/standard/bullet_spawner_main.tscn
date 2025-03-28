@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx3whdnqlevgb"]
+
+[ext_resource type="Script" uid="uid://cpxsxteut5px1" path="res://Player/bullet_spawner.gd" id="1_b2itj"]
+
+[node name="main" type="Node2D"]
+
+[node name="bullet_spawner" type="Node2D" parent="."]
+rotation = 1.5708
+script = ExtResource("1_b2itj")
+
+[node name="Cooldown" type="Timer" parent="bullet_spawner"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="bullet_spawner/Cooldown" to="bullet_spawner" method="_on_cooldown_timeout"]

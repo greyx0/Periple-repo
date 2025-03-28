@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://csj0od5u01rw"]
+
+[ext_resource type="PackedScene" uid="uid://ci7apebeinf8v" path="res://Player/player.tscn" id="1_feyax"]
+[ext_resource type="PackedScene" uid="uid://dx3whdnqlevgb" path="res://Bullets/standard/bullet_spawner_main.tscn" id="2_omtrn"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_feyax")]
+
+[node name="main" parent="Player" instance=ExtResource("2_omtrn")]
+position = Vector2(105, 0)

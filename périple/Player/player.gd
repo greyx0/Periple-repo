@@ -3,8 +3,6 @@ extends CharacterBody2D
 @onready var screen_size = get_viewport_rect().size
 @export var speed = 300.0
 
-const standard_bullet = preload("res://Bullets/standard/standard_bullet.tscn")
-
 func _ready():
 	pass
 

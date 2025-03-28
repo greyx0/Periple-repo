@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://2ne0pyvv61ny"]
+[gd_scene load_steps=14 format=3 uid="uid://2ne0pyvv61ny"]
 
 [ext_resource type="Texture2D" uid="uid://brvlgnmx7edvq" path="res://Bullets/standard/Bullet 24x24 Part 5C Free.png" id="1_03hoc"]
+[ext_resource type="Script" uid="uid://cumhngphby3n5" path="res://Bullets/standard/standard_bullet.gd" id="1_ym8mi"]
 
 [sub_resource type="GDScript" id="GDScript_03hoc"]
 script/source = "extends Area2D
@@ -18,35 +19,35 @@ func _process(delta):
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ym8mi"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(384, 264, 24, 24)
+region = Rect2(0, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3lyl"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(408, 264, 24, 24)
+region = Rect2(24, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ic2fh"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(432, 264, 24, 24)
+region = Rect2(48, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hi517"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(456, 264, 24, 24)
+region = Rect2(72, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdnhu"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(480, 264, 24, 24)
+region = Rect2(96, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08twb"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(504, 264, 24, 24)
+region = Rect2(120, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_camt3"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(528, 264, 24, 24)
+region = Rect2(144, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgit4"]
 atlas = ExtResource("1_03hoc")
-region = Rect2(552, 264, 24, 24)
+region = Rect2(168, 288, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrcxt"]
 animations = [{
@@ -77,15 +78,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 15.0
 }]
 
-[node name="standard_bullet" type="Area2D"]
+[node name="standard_bullet" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_ym8mi")
+speed = 450
+
+[node name="standard_bullet_area" type="Area2D" parent="."]
 script = SubResource("GDScript_03hoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="standard_bullet_area"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_03hoc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xrcxt")
-frame_progress = 0.371002
+frame_progress = 0.283352
+
+[node name="Despawner" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="standard_bullet_area" to="." method="_on_standard_bullet_area_body_entered"]
+[connection signal="timeout" from="Despawner" to="." method="_on_despawner_timeout"]
